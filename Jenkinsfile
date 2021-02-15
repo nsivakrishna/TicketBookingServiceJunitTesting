@@ -1,26 +1,20 @@
 pipeline {
-    agent any
+    agent {
+        label '!windows'
+    }
+
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+
     stages {
-        script{
-            env.awscliver = "awscli==1.0.18"
-            
-        }
-        stage('awscli version') {
+        stage('Build') {
             steps {
-                  sh '''              	       
-                         if [[ $(/usr/bin/pip freeze | grep awscli)  = ${env.awscliver} ]]; then
-              
-                            echo "==Expected version standard-slv aws version  $(/usr/bin/pip freeze | grep awscli) and install version same==="
-              
-                          else
-                      
-                              echo  "????????????? not expected standard-slv aws version $(/usr/bin/pip freeze | grep awscli) ?????????????"
-                          fi
-                        
-                     '''
+                echo "Database engine is ${DB_ENGINE}"
+                echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+                sh 'printenv'
             }
         }
-
-
     }
 }
