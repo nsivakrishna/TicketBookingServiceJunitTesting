@@ -4,6 +4,7 @@ pipeline {
         stage('git repo & clean') {
             steps {
                   sh '''
+                      ls -la
               	       eval awscliversion="awscli==1.18.91"
                          if [[ $(/usr/bin/pip freeze | grep awscli)  = ${awscliversion} ]]; then
               
