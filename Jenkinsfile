@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('git repo & clean') {
+        stage('awscli version') {
             steps {
                   sh '''
                       cd /var/lib/jenkins/workspace/gitpipelinetest
