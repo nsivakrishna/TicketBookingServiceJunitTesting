@@ -4,10 +4,10 @@ pipeline {
         stage('git repo & clean') {
             steps {
                   sh '''
-                      pwd
-                      ls -la
-              	       eval awscliversion="awscli==1.18.91"
-                         if [[ $(/usr/bin/pip freeze | grep awscli)  = ${awscliversion} ]]; then
+                      cd /var/lib/jenkins/workspace/gitpipelinetest
+                       sh './parameters.sh'
+              	       
+                         if [[ $(/usr/bin/pip freeze | grep awscli)  = ${awscliver} ]]; then
               
                             echo "==Expected version standard-slv aws version  $(/usr/bin/pip freeze | grep awscli) and install version same==="
               
